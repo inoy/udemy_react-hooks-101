@@ -88,3 +88,15 @@ useEffect(() => {
   console.log('This callback is for name only.');
 }, [name]);
 ```
+
+## [useReducer](https://ja.reactjs.org/docs/hooks-reference.html#usereducer)
+
+### TODO あとで読む
+
+learn/lecture/15158680#questions/8280808
+
+> そこで登場するのがカスタムフックです。
+> https://reactjs.org/docs/hooks-custom.html
+
+> 1. 外部からデータを取得する処理をコンポーネント内部に実装した例 issues/8280808/before というブランチをご確認ください。
+> 2. 1 で実装した処理をカスタムフックに分離し、そのカスタムフックを利用した例 issues/8280808/after というブランチをご確認ください。
