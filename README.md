@@ -56,3 +56,35 @@ const App = (props) => {
   );
 };
 ```
+
+## useEffect
+
+### componentDidMount、componentDidUpdate っぽいタイミング
+
+初回レンダー または 再レンダー 時
+
+```jsx
+useEffect(() => {
+  console.log('This is like componentDidMount or componentDidUpdate.');
+});
+```
+
+### componentDidMount なタイミング
+
+初回レンダー時
+
+```jsx
+useEffect(() => {
+  console.log('This is like componentDidMount.');
+}, []);
+```
+
+### 特定の状態（ステータス）変更時
+
+状態 name の変更時
+
+```jsx
+useEffect(() => {
+  console.log('This callback is for name only.');
+}, [name]);
+```
