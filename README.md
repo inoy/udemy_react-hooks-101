@@ -263,7 +263,7 @@ https://github.com/reduxjs/redux/tree/master/examples
 
 ### Provider, Consumer
 
-まず [createContext](https://ja.reactjs.org/docs/context.html#reactcreatecontext) でコンテクストオブジェクト（Provider, Consumer などをメンバーに持つオブジェクト）を作成。
+[createContext](https://ja.reactjs.org/docs/context.html#reactcreatecontext) でコンテクストオブジェクト（Provider, Consumer などをメンバーに持つオブジェクト）を作成。
 
 `src/context/AppContext.js`
 
@@ -294,7 +294,7 @@ const App = () => {
 export default App;
 ```
 
-`AppContext.Provider` の子コンポーネントは、`useContext`を介して Provider の value にアクセス可能。
+`AppContext.Provider` の子コンポーネントは、[useContext](https://ja.reactjs.org/docs/hooks-reference.html#usecontext)を介して [Consumer](https://ja.reactjs.org/docs/context.html#contextconsumer) として Provider の value にアクセス可能。
 
 ```jsx
 import { useContext } from 'react';

@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions';
+import AppContext from '../context/AppContext';
 
-const EventForm = (props) => {
+const EventForm = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const { state, dispatch } = props;
+  const { state, dispatch } = useContext(AppContext);
 
   const addEvent = (e) => {
     e.preventDefault();
@@ -62,11 +63,6 @@ const EventForm = (props) => {
       </form>
     </>
   );
-};
-
-EventForm.defaultProps = {
-  title: '',
-  body: '',
 };
 
 export default EventForm;
