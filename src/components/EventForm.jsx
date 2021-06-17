@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions';
+
 const EventForm = (props) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -7,7 +9,7 @@ const EventForm = (props) => {
 
   const addEvent = (e) => {
     e.preventDefault();
-    dispatch({ type: 'CREATE_EVENT', title: title, body: body });
+    dispatch({ type: CREATE_EVENT, title: title, body: body });
     setTitle('');
     setBody('');
   };
@@ -16,7 +18,7 @@ const EventForm = (props) => {
     e.preventDefault();
     if (!window.confirm('すべてのイベントを本当に削除しても良いですか？'))
       return;
-    dispatch({ type: 'DELETE_ALL_EVENTS' });
+    dispatch({ type: DELETE_ALL_EVENTS });
   };
 
   return (

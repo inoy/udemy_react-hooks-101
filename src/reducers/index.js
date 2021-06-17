@@ -1,5 +1,7 @@
+import { CREATE_EVENT, DELETE_EVENT, DELETE_ALL_EVENTS } from '../actions';
+
 // action = {
-//   type: 'CREATE_EVENT',
+//   type: CREATE_EVENT,
 //   title: 'タイトル1',
 //   body: 'ボディー1',
 // };
@@ -18,12 +20,12 @@ const newId = (state) => {
 
 const events = (state = [], action) => {
   switch (action.type) {
-    case 'CREATE_EVENT':
+    case CREATE_EVENT:
       const event = { title: action.title, body: action.body };
       return [...state, { ...event, id: newId(state) }];
-    case 'DELETE_EVENT':
+    case DELETE_EVENT:
       return state.filter((event) => event.id !== action.id);
-    case 'DELETE_ALL_EVENTS':
+    case DELETE_ALL_EVENTS:
       return [];
     default:
       return state;
