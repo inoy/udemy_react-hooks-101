@@ -261,4 +261,57 @@ https://github.com/reduxjs/redux/tree/master/examples
 
 ## React Context
 
-[createcontext](https://ja.reactjs.org/docs/context.html#reactcreatecontext)
+### Provider, Consumer
+
+まず [createContext](https://ja.reactjs.org/docs/context.html#reactcreatecontext) でコンテクストオブジェクト（Provider, Consumer などをメンバーに持つオブジェクト）を作成。
+
+`src/context/AppContext.js`
+
+```js
+import { createContext } from 'react';
+const AppContext = createContext();
+export default AppContext;
+```
+
+コンテクストオブジェクトのメンバー Provider（[Context.Provider](https://ja.reactjs.org/docs/context.html#contextprovider)）には value プロパティを指定できる。
+
+`src/components/App.jsx`
+
+```jsx
+import AppContext from '../context/AppContext';
+import Events from './Events';
+
+const App = () => {
+  return (
+    <AppContext.Provider value={'Hello, I am a Provider.'}>
+      <div className='container-fluid'>
+        <Events state={state} dispatch={dispatch} />
+      </div>
+    </AppContext.Provider>
+  );
+};
+
+export default App;
+```
+
+`AppContext.Provider` の子コンポーネントは、`useContext`を介して Provider の value にアクセス可能。
+
+```jsx
+import { useContext } from 'react';
+
+import AppContext from '../context/AppContext';
+
+const Events = (props) => {
+  const { state, dispatch } = props;
+  const value = useContext(AppContext);
+
+  // Hello, I am a Provider.をレンダー
+  return (
+    <>
+      <div>{value}</div>
+    </>
+  );
+};
+
+export default Events;
+```
