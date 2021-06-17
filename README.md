@@ -301,6 +301,15 @@ Redux 採用するなら一緒に採用すると楽になるらしい？
 単に参考になることあるかなーくらい。  
 https://github.com/reduxjs/redux/tree/master/examples
 
+### TODO あとで読む 非同期処理
+
+react-hooks-101/learn/lecture/15049644#questions/12553000
+
+> > Redux-thunk 的な機能は特にないのでしょうか？？
+>
+> 「Redux-thunk 的な機能」についてどのような機能を想定されているのかにもよるとは思いますが、 非同期の処理等を含む複雑なロジックを関数にしてまるっとコンポーネントから引き剥がすというのを redux-thunk はやってくれているかと思いますが、 これと同じようなことをやろうと思った時には、一旦、必要な処理を関数コンポーネント内に実装して、 ある塊になったらそれを別の hook として外に出すということをやるというのがオーソドックスなやり方だと思います。これは一般にカスタムフックと呼ばれている手法です。  
+> https://ja.reactjs.org/docs/hooks-custom.html
+
 ## React Context
 
 ### Provider, Consumer
