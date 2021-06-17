@@ -245,7 +245,16 @@ learn/lecture/15158680#questions/8280808
 
 ## Redux
 
-### TODO あとで読む
+### React Hooks vs Redux
 
-Redux の examples  
+course/react-hooks-101/learn/lecture/15049610#questions/12741241
+
+### TODO Redux Toolkit がなにか調べる
+
+Redux 採用するなら一緒に採用すると楽になるらしい？  
+まったくなにか分からないから一から調べる。
+
+### TODO あとで読む Redux の examples
+
+単に参考になることあるかなーくらい。  
 https://github.com/reduxjs/redux/tree/master/examples
