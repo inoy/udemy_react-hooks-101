@@ -91,6 +91,90 @@ useEffect(() => {
 
 ## [useReducer](https://ja.reactjs.org/docs/hooks-reference.html#usereducer)
 
+### 1 `src/reducers/index.js`
+
+```jsx
+const newId = (state) => {
+  // 省略
+};
+
+const events = (state = [], action) => {
+  switch (action.type) {
+    case 'CREATE_EVENT':
+      const event = { title: action.title, body: action.body };
+      return [...state, { ...event, id: newId(state) }];
+      return [];
+    default:
+      return state;
+  }
+};
+
+export default events;
+```
+
+### 2 `src/components/App.jsx`
+
+```jsx
+import React, { useState, useReducer } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import reducer from '../reducers';
+
+const App = (props) => {
+  const [event, setEvent] = useState(props);
+  const { title, body } = event;
+  const [state, dispatch] = useReducer(reducer, []);
+
+  const addEvent = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'CREATE_EVENT', title: title, body: body });
+
+    console.log(state);
+
+    setEvent(props);
+  };
+
+  console.log(state);
+
+  return (
+    <div className='container-fluid'>
+      <h4>イベント作成フォーム</h4>
+      <form>
+        <div className='form-group'>
+          <label htmlFor='formEventTitle'>タイトル</label>
+          <input
+            className='form-control'
+            id='formEventTitle'
+            value={title}
+            onChange={(e) => setEvent({ ...event, title: e.target.value })}
+          />
+        </div>
+
+        <div className='form-group'>
+          <label htmlFor='formEventBody'>ボディー</label>
+          <textarea
+            className='form-control'
+            id='formEventBody'
+            value={body}
+            onChange={(e) => setEvent({ ...event, body: e.target.value })}
+          />
+        </div>
+
+        <button className='btn btn-primary' onClick={addEvent}>
+          イベントを作成する
+        </button>
+      </form>
+    </div>
+  );
+};
+
+App.defaultProps = {
+  title: '',
+  body: '',
+};
+
+export default App;
+```
+
 ### TODO あとで読む
 
 learn/lecture/15158680#questions/8280808

@@ -19,6 +19,7 @@ const newId = (state) => {
 const events = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_EVENT':
+      console.log({ action });
       const event = { title: action.title, body: action.body };
       return [...state, { ...event, id: newId(state) }];
     case 'DELETE_EVENT':
