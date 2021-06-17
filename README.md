@@ -258,3 +258,7 @@ Redux 採用するなら一緒に採用すると楽になるらしい？
 
 単に参考になることあるかなーくらい。  
 https://github.com/reduxjs/redux/tree/master/examples
+
+## React Context
+
+[createcontext](https://ja.reactjs.org/docs/context.html#reactcreatecontext)
