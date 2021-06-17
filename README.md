@@ -91,7 +91,11 @@ useEffect(() => {
 
 ## [useReducer](https://ja.reactjs.org/docs/hooks-reference.html#usereducer)
 
-### 1 `src/reducers/index.js`
+### 1 reducer を作成
+
+reducer は state（状態）と action（type, payload）を引数に取り、action に応じて、state を更新する。
+
+`src/reducers/index.js`
 
 ```jsx
 const newId = (state) => {
@@ -112,7 +116,13 @@ const events = (state = [], action) => {
 export default events;
 ```
 
-### 2 `src/components/App.jsx`
+### 2 useReducer で reducer を実行
+
+[useReducer](https://ja.reactjs.org/docs/hooks-reference.html#usereducer)を 1 で作成した reducer と state の初期値（空配列）を指定・実行し、state と dispatch メソッド を取得する。
+
+dispatch の引数に action を指定することで 1 で作成した reducer の処理を実行可能。たとえば、CREATE_EVENT を実行したいなら`dispatch({ type: 'CREATE_EVENT', title: title, body: body })`。
+
+`src/components/App.jsx`
 
 ```jsx
 import React, { useState, useReducer } from 'react';
@@ -175,7 +185,7 @@ App.defaultProps = {
 export default App;
 ```
 
-### 3 コンポーネント化
+### （オプション）3 コンポーネント化
 
 dispatch を利用する処理をコンポーネント化した場合、親（dispatch 生成コンポ）から子コンポ props として dispatch を渡す。
 
@@ -232,6 +242,38 @@ const Event = ({ event, dispatch }) => {
   );
 };
 ```
+
+### 4 redux（combineReducers）の導入
+
+複数の状態を reducer で管理したい場合、redux が提供する [combineReducers](https://redux.js.org/api/combinereducers) を利用すると便利。
+
+1 で`src/reducers/index.js` は events の状態のみを管理する reducer として作成したが、events 以外の状態も管理するために index.js から events.js へリネーム。index.js を新規作成し root の reducer として利用する。
+
+`src/reducers/index.js`
+
+```js
+import { combineReducers } from 'redux';
+import events from './events';
+export default combineReducers({ events });
+```
+
+（上記では状態は events だけの状態。これに他の状態を追加することで combineReducers の意味がでてくる。）
+
+combineReducers はオブジェクトで状態を管理している（combineReducers({ events })）ため
+
+useReducer に指定する初期状態もオブジェクトで指定する必要がある。
+
+```js
+const App = () => {
+  const initialState = {
+    events: [],
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+```
+
+（combineReducers 導入前=events.js のみを useReducer に指定していた時は `const [state, dispatch] = useReducer(reducer, []);`）
+
+また、state の参照箇所も`state.events`でイベント配列を参照する必要がある（combineReducers 導入前は`state`で events 配列が見えていた）。
 
 ### TODO あとで読む
 
