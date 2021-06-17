@@ -12,17 +12,17 @@ const newId = (state) => {
   if (length === 0) {
     return 1;
   } else {
-    return state[length - 1].id++;
+    return state[length - 1].id + 1;
   }
 };
 
 const events = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_EVENT':
-      console.log({ action });
       const event = { title: action.title, body: action.body };
       return [...state, { ...event, id: newId(state) }];
     case 'DELETE_EVENT':
+      return state.filter((event) => event.id !== action.id);
     case 'DELETE_ALL_EVENTS':
       return [];
     default:

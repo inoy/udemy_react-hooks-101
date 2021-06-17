@@ -175,6 +175,64 @@ App.defaultProps = {
 export default App;
 ```
 
+### 3 コンポーネント化
+
+dispatch を利用する処理をコンポーネント化した場合、親（dispatch 生成コンポ）から子コンポ props として dispatch を渡す。
+
+`App.jsx` Event コンポーネントを呼び出す。Event コンポーネントの props に useReducer で生成した dispatch を渡す。
+
+```jsx
+import React, { useState, useReducer } from 'react';
+const App = (props) => {
+  const [state, dispatch] = useReducer(reducer, []);
+
+  return (
+    <div className='container-fluid'>
+      <h4>イベント一覧</h4>
+      <table className='table table-hover'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>タイトル</th>
+            <th>ボディー</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {state.map((event) => (
+            <Event key={event.id} event={event} dispatch={dispatch} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+```
+
+`Event.jsx` props として親（App）から受け取った dispatch を利用する。
+
+```jsx
+const Event = ({ event, dispatch }) => {
+  const id = event.id;
+  const handleClickDeleteButton = (e) => {
+    dispatch({ type: 'DELETE_EVENT', id });
+  };
+
+  return (
+    <tr>
+      <td>{id}</td>
+      <td>{event.title}</td>
+      <td>{event.body}</td>
+      <td>
+        <button className='btn btn-danger' onClick={handleClickDeleteButton}>
+          削除
+        </button>
+      </td>
+    </tr>
+  );
+};
+```
+
 ### TODO あとで読む
 
 learn/lecture/15158680#questions/8280808
