@@ -310,6 +310,16 @@ react-hooks-101/learn/lecture/15049644#questions/12553000
 > 「Redux-thunk 的な機能」についてどのような機能を想定されているのかにもよるとは思いますが、 非同期の処理等を含む複雑なロジックを関数にしてまるっとコンポーネントから引き剥がすというのを redux-thunk はやってくれているかと思いますが、 これと同じようなことをやろうと思った時には、一旦、必要な処理を関数コンポーネント内に実装して、 ある塊になったらそれを別の hook として外に出すということをやるというのがオーソドックスなやり方だと思います。これは一般にカスタムフックと呼ばれている手法です。  
 > https://ja.reactjs.org/docs/hooks-custom.html
 
+### TODO あとで読む undo history
+
+https://redux.js.org/recipes/implementing-undo-history
+
+React Hooks, Context で undo history は容易に実現可能か気になる。
+
+### TODO あとで読む react-redux hooks
+
+https://react-redux.js.org/api/hooks
+
 ## React Context
 
 ### Provider, Consumer
